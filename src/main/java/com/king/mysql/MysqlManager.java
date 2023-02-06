@@ -37,8 +37,15 @@ public class MysqlManager {
         String username = ReadConfig.Username;
         String password = ReadConfig.Password;
 
+        try {
+            connection = DriverManager.getConnection(url,username,password);
+        }catch (Exception e){
+            e.printStackTrace();
+            Bukkit.getLogger().log(Level.WARNING,"获取SQL连接时出现异常，请检查sql配置!!");
+        }
+
         //新建一个表如果没有这个表的话
-        String sql = "CREATE TABLE if not exists `playerdata`  (\n" +
+        String sql = "CREATE TABLE if not exists `playerdata`(\n" +
                 "  `player_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '玩家的id',\n" +
                 "  `finished_times` int(5) NOT NULL COMMENT '完成任务的次数',\n" +
                 "  `last_receive_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '上次收到任务的时间(非完成时间)',\n" +
@@ -49,13 +56,6 @@ public class MysqlManager {
             connection.createStatement().execute(sql);
         } catch (SQLException e) {
             log.log(Level.SEVERE,"新建数据库表时出现了一个错误!!");
-        }
-
-        try {
-            connection = DriverManager.getConnection(url,username,password);
-        }catch (Exception e){
-            e.printStackTrace();
-            Bukkit.getLogger().log(Level.WARNING,"获取SQL连接时出现异常，请检查sql配置!!");
         }
 
     }

@@ -1,6 +1,7 @@
 package com.king.plugincore;
 
 import com.king.Zhu;
+import com.king.mysql.MysqlManager;
 import com.king.resource.Manuals;
 import com.king.resource.ReadManual;
 import org.bukkit.command.CommandSender;
@@ -19,14 +20,14 @@ public class giveTask {
             Manuals manuals = ReadManual.manualList.get(s);
 
             if (manuals.giveItem(Zhu.giveplayer(name))) {
-
+                MysqlManager.receive(name);
             }else{
-                //玩家不在线则
+                /*//玩家不在线则
                 if(commandSender instanceof Player){
                     Zhu.senmessage((Player) commandSender,1);
                 }else{
                     Zhu.mistake(6,"");
-                }
+                }*/
 
             }
 

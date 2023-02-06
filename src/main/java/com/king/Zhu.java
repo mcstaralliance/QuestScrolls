@@ -145,7 +145,7 @@ public class Zhu extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new Manualspeak(),this); // 发言
         Bukkit.getPluginManager().registerEvents(new Manualcommands(),this); //指令
 
-        Bukkit.getPluginManager().registerEvents(new playerlogin(),this); //玩家登录
+        Bukkit.getPluginManager().registerEvents(new PlayerJoin(),this); //玩家登录
 
         Bukkit.getPluginManager().registerEvents(new closeGui(),this); //关闭Gui
         Bukkit.getPluginManager().registerEvents(new operateGui(),this); //玩家操作 GUI
